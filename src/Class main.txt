@@ -1,0 +1,144 @@
+Class main
+
+package pbo;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class main {
+        private static int navigasi;
+
+    public static void main(String[] args) {
+
+        ArrayList<encapsulation> book = new ArrayList<>();
+
+        book.add(0, new encapsulation("A001","Lucky", "ngawi", "08989665117", "lucky_tyas10@yahoo.com", "001"));
+        book.add(1, new encapsulation("A002","Dhimas", "depok", "081384693840", "dhimasyoga90@yahoo.com", "002"));
+        book.add(2, new encapsulation("A003","Rangga", "bogor", "081318713647", "ranggakurniasandi@yahoo.com", "003"));
+
+        menu(book);
+    }
+
+    private static void menu(ArrayList<encapsulation> book) {
+        Scanner input = new Scanner(System.in);
+        do {
+            System.out.println("\nMenu : \n1. Tampil Data Semua\n2. Cari data\n0. Keluar");
+        System.out.print("Masukan nomor menu yang dipilih: ");
+            navigasi = input.nextInt();
+            System.out.println("");
+            switch (navigasi) {
+                case 1:
+                    showAllKontak(book);
+                    break;
+                case 2:
+                    searchData(book);
+                    break;
+                case 0:
+                  System.out.println("Program terminated ! ");
+                    break;                
+            }
+        } while (navigasi != 3);
+    }
+
+    private static void showAllKontak(ArrayList<encapsulation> book) {
+        System.out.println("Daftar Kontak Buku :\n");
+        for (int i = 0; i < book.size(); i++) {
+   System.out.println("<<===================================>>");
+   System.out.println("NAMA      : " +book.get(i).getNama());
+   System.out.println("Alamat    : " + book.get(i).getAlamat());
+   System.out.println("No Telpon : " + book.get(i).getNoTelp());
+   System.out.println("Email     : " + book.get(i).getEmail());
+   System.out.println("No KTP    : " + book.get(i).getNoKTP());
+            System.out.println("<<===================================>>");
+            System.out.println("");
+        }
+    }
+
+   private static void searchData(ArrayList<encapsulation> book) {
+        Scanner input = new Scanner(System.in);
+        String Email;
+        String Nama;
+        String noKTP;
+        boolean checkEmail = false;
+        boolean checkNama = false;
+        boolean checknoKTP = false;
+        int kodeNama = -1;
+        int kodeEmail = -1;
+        int kodeKTP = -1;
+        int kodeObjek = -1;
+        int i = 0;
+
+        do {
+            do {
+                System.out.print("\nMasukan Nama : ");
+                Nama = input.next();
+                for (int j = 0; j < book.size(); j++) {
+    if (Nama.equalsIgnoreCase(book.get(j).getNama()) == true) {
+                        checkNama = true;
+                        kodeNama = j;
+                        break;
+                    }
+                }
+                if (checkNama == false) {
+ System.out.println("Alamat email tidak ada yang cocok , Ulangi lagi !");
+                }
+            } while (checkNama != true);
+
+            do {
+                System.out.print("Masukan Alamat email : ");
+                Email = input.next();
+                for (int j = 0; j < book.size(); j++) {
+  if (Email.equalsIgnoreCase(book.get(j).getEmail()) == true) {
+                        checkEmail = true;
+                        kodeEmail = j;
+                        break;
+                    }
+                }
+                if (checkEmail == false) {
+   System.out.println("Alamat email tidak ada yang cocok , Ulangi lagi !");
+                }
+            } while (checkEmail != true);
+
+            do {
+                System.out.print("Masukan No KTP : ");
+                noKTP = input.next();
+                for (int j = 0; j < book.size(); j++) {
+if (noKTP.equalsIgnoreCase(book.get(j).getNoKTP()) == true) {
+                        checknoKTP = true;
+                        kodeKTP = j;
+                        break;
+                    }
+                }
+                if (checknoKTP == false) {
+  System.out.println("No KTP tidak ada yang cocok , Ulangi lagi !");
+                }
+            } while (checknoKTP != true);
+            
+            do {
+
+                if (book.get(i).getNama() == book.get(kodeNama).getNama() && book.get(i).getEmail() == book.get(kodeEmail).getEmail() && book.get(i).getNoKTP() == book.get(kodeKTP).getNoKTP()) {
+                    kodeObjek = i;
+                    break;
+                }
+                i++;
+            } while (i < book.size());
+
+            if (kodeObjek != -1) {
+                getKontak(book, kodeObjek);
+                break;
+            } else {
+                i = 0;
+                System.out.println("Maaf kombinasi antara Nama , email dan no KTP tidak sesuai , ulangi lagi !");
+            }
+        } while (kodeObjek == -1);
+    }
+
+    private static void getKontak(ArrayList<encapsulation> book, int i) {
+        System.out.println("\nPencarian................");
+        System.out.println("\nInfo Kontak yang anda cari : ");
+        System.out.println("No.\t: " + book.get(i).getNomer());
+        System.out.println("NAMA\t: " + book.get(i).getNama());
+    System.out.println("Alamat\t: " + book.get(i).getAlamat());
+    System.out.println("No. Telpon: " + book.get(i).getNoTelp());
+    System.out.println("Email\t: " + book.get(i).getEmail());
+    System.out.println("No KTP\t: " + book.get(i).getNoKTP());
+    }
+}

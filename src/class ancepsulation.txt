@@ -1,0 +1,56 @@
+Class encapsulation
+
+package pbo;
+public class encapsulation {
+    private String nomer;
+    private String Nama;
+    private String Alamat;
+    private String noTelp;
+    private String Email;
+    private String NoKTP;
+
+    public encapsulation(String nomer, String Nama, String Alamat, String noTelp, String Email, String NoKTP) {
+        this.nomer = nomer;
+        this.Nama = Nama;
+        this.Alamat = Alamat;
+        this.noTelp = noTelp;
+        this.Email = Email;
+        this.NoKTP = NoKTP;
+    }
+    public void setNomer(String nomer) {
+        this.nomer = nomer;
+    }
+    public void setNama(String Nama) {
+        this.Nama = Nama;
+    }
+    public void setAlamat(String Alamat) {
+        this.Alamat = Alamat;
+    }
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+    public void setNoTelp(String noTelp) {
+        this.noTelp = noTelp;
+    }
+    public String getNomer() {
+        return nomer;
+    }
+    public String getNama() {
+        return Nama;
+    }
+    public String getEmail() {
+        return Email;
+    }
+    public String getAlamat() {
+        return Alamat;
+    }
+    public String getNoKTP() {
+        return NoKTP;
+    }
+    public void setNoKTP(String noKTP) {
+        this.NoKTP = NoKTP;
+    }
+    public String getNoTelp() {
+        return noTelp;
+    }
+}
